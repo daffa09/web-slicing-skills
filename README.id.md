@@ -31,6 +31,16 @@ cp -r skills/slice-web skills/slice-mobile ~/.claude/skills/
 Playwright belum otomatis di jalur ini, skill-nya sendiri yang pasang ke folder temp
 pas pertama kali dipanggil.
 
+**Cara 3, AI coding agent lain (Cursor, Windsurf, Copilot Coding Agent, OpenAI Codex,
+Gemini CLI, Aider, Zed, dst.):**
+
+Ini bukan cuma buat Claude. [`AGENTS.md`](AGENTS.md) isinya dua skill yang sama dalam
+bentuk markdown polos, tanpa frontmatter khas Claude, ngikutin konvensi terbuka
+[agents.md](https://agents.md) yang udah otomatis kebaca kebanyakan agent. Tinggal
+tempel (atau bagian yang relevan) ke `AGENTS.md`, `.cursor/rules/`, `.windsurfrules`,
+atau file instruksi apa pun yang dipakai agent kamu, di project kamu sendiri. Playwright
+tetap harus dipasang manual di jalur ini, langkahnya sama kayak cara 2 di atas.
+
 ## Butuh apa
 
 - Claude Code.

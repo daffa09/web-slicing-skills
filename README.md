@@ -32,6 +32,17 @@ cp -r skills/slice-web skills/slice-mobile ~/.claude/skills/
 Playwright isn't automatic on this path. The skill installs it to a temp folder the
 first time it's called.
 
+**Option 3, any other AI coding agent (Cursor, Windsurf, Copilot Coding Agent, OpenAI
+Codex, Gemini CLI, Aider, Zed, ...):**
+
+This isn't Claude-only. [`AGENTS.md`](AGENTS.md) has the same two skills as plain
+markdown, no Claude-specific frontmatter, following the open
+[agents.md](https://agents.md) convention most agents already read automatically.
+Drop it (or the relevant section) into your own project's `AGENTS.md`,
+`.cursor/rules/`, `.windsurfrules`, or whatever instructions file your agent uses.
+Playwright still needs installing yourself there, it's a manual step outside a project's
+dependencies, same as option 2 above.
+
 ## Requirements
 
 - Claude Code.
