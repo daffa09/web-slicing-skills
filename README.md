@@ -1,70 +1,73 @@
+English | [Bahasa Indonesia](README.id.md)
+
 # web-slicing-skills
 
-Dua skill Claude Code buat slicing UI 1:1 dari mockup: `/slice-web` buat website/web app
-(termasuk mobile web), `/slice-mobile` buat Flutter, React Native/Expo, Android native,
-dan iOS native. Sumbernya boleh URL, file HTML, gambar, atau MCP desain kayak Figma.
-Hasilnya dicek pakai Playwright — screenshot ditumpuk di atas sumber, diff-nya kelihatan
-sampai selisihnya tinggal noise tipis di tepi teks.
+Two Claude Code skills for pixel-perfect UI slicing from a mockup: `/slice-web` for
+websites and web apps (including mobile web), `/slice-mobile` for Flutter, React
+Native/Expo, native Android, and native iOS. The source can be a URL, an HTML file, an
+image, or a design MCP like Figma. Output is checked with Playwright: the screenshot
+gets laid over the source, and the diff stays visible until what's left is just faint
+noise at the edges of the text.
 
-## Pasang
+## Install
 
-**Cara 1 — plugin (satu baris, Playwright otomatis kepasang):**
+**Option 1, plugin (one line, Playwright installs itself):**
 
 ```
 /plugin marketplace add daffa09/web-slicing-skills
 /plugin install web-slicing-skills@web-slicing-skills
 ```
 
-Skill-nya jadi `/web-slicing-skills:slice-web` dan `/web-slicing-skills:slice-mobile`.
-Playwright + Chromium kepasang otomatis di sesi Claude Code pertama setelah install —
-bukan seketika pas `/plugin install` selesai, tapi begitu sesi berikutnya dibuka. Butuh
-Node.js di mesin kamu dan sekali unduh internet (~150 MB buat Chromium).
+Skills become `/web-slicing-skills:slice-web` and `/web-slicing-skills:slice-mobile`.
+Playwright and Chromium install automatically during the first Claude Code session after
+install, not the instant `/plugin install` finishes, but once the next session opens.
+Requires Node.js on your machine and one internet download (~150 MB for Chromium).
 
-**Cara 2 — copy manual (nama tetap `/slice-web` dan `/slice-mobile`):**
+**Option 2, manual copy (keeps the short names `/slice-web` and `/slice-mobile`):**
 
 ```
 cp -r skills/slice-web skills/slice-mobile ~/.claude/skills/
 ```
 
-Playwright belum otomatis di jalur ini — skill-nya sendiri yang pasang ke folder temp
-pas pertama kali dipanggil.
+Playwright isn't automatic on this path. The skill installs it to a temp folder the
+first time it's called.
 
-## Butuh apa
+## Requirements
 
 - Claude Code.
-- Node.js (buat Playwright).
-- Koneksi internet sekali di awal buat unduh Chromium.
-- Opsional: MCP desain (mis. Figma) kalau sumbernya MCP.
-- Opsional: `graphify` di `PATH` buat hemat token nyari komponen/token di repo Next.js,
-  Flutter, atau React Native yang gede. Nggak ada pun jalan — skill-nya pakai grep biasa.
+- Node.js (for Playwright).
+- One internet connection upfront to download Chromium.
+- Optional: a design MCP (e.g. Figma) if your source is MCP.
+- Optional: `graphify` on `PATH` to save tokens finding components/tokens in a large
+  Next.js, Flutter, or React Native repo. Works fine without it too, the skill falls
+  back to plain grep.
 
-## Cara pakai
+## Usage
 
 ```
-/slice-web https://contoh.com/pricing src/app/pricing/page.tsx
+/slice-web https://example.com/pricing src/app/pricing/page.tsx
 /slice-mobile ./mockup/onboarding-3.png OnboardingScreen
 ```
 
-Sumber atau target kosong, skill-nya nanya balik satu kali lalu jalan tanpa konfirmasi
-lagi. Hasilnya laporan ringkas: file yang diubah, sisa selisih per section, dan path
-screenshot overlay terakhir.
+Leave out the source or target and the skill asks once, then runs to completion without
+asking again. Output is a short report: files changed, remaining diff per section, and
+the path to the last overlay screenshot.
 
-## Aturan yang dipegang
+## What it holds to
 
-- Tiru persis — tanpa redesign, ganti teks, atau tambah/kurang elemen.
-- Semua nilai dari hasil ukur (computed style / data MCP / sampling pixel), bukan
-  tebakan.
-- Pakai komponen dan token project yang sudah ada, bukan bikin baru.
-- Nggak nambah dependency ke project kamu — Playwright cuma jalan di folder terpisah,
-  di luar repo yang di-slice.
+- Copy exactly, no redesigning, no swapped text, no added or missing elements.
+- Every value comes from measurement (computed style / MCP data / pixel sampling),
+  never guessed.
+- Reuse the project's existing components and tokens instead of inventing new ones.
+- No new dependency in your project. Playwright only runs in a separate folder, outside
+  the repo being sliced.
 
-Detail lengkap tiap aturan ada di `skills/slice-web/SKILL.md` dan
-`skills/slice-mobile/SKILL.md`.
+Full rules live in `skills/slice-web/SKILL.md` and `skills/slice-mobile/SKILL.md`.
 
 ## Troubleshooting
 
-Chromium gagal keunduh otomatis (jaringan kepotong pas sesi pertama)? Minta Claude
-jalanin ulang, atau pasang manual:
+Chromium failed to download automatically (network dropped during the first session)?
+Ask Claude to retry, or install it manually:
 
 ```
 cd ~/.claude/plugins/data/web-slicing-skills-web-slicing-skills
