@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mkdir -p \"$CLAUDE_PLUGIN_DATA\" 2>/dev/null; diff -q \"$CLAUDE_PLUGIN_ROOT/package.json\" \"$CLAUDE_PLUGIN_DATA/package.json\" >/dev/null 2>&1 || (cp \"$CLAUDE_PLUGIN_ROOT/package.json\" \"$CLAUDE_PLUGIN_DATA/\" && cd \"$CLAUDE_PLUGIN_DATA\" && npm install >/dev/null 2>&1 && npx --yes playwright install chromium >/dev/null 2>&1)"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "web-slicing-skills-deps",
+  "private": true,
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "web-slicing-skills",
+  "description": "Skill slicing UI web & mobile 1:1 dari mockup, Playwright bawaan.",
+  "owner": { "name": "Daffa Fathan" },
+  "plugins": [
+    {
+      "name": "web-slicing-skills",
+      "source": "./",
+      "description": "Slicing UI web & mobile 1:1, dicek pakai Playwright sampai overlay-nya cocok."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "web-slicing-skills",
+  "description": "Slicing UI web & mobile 1:1 dari mockup — URL, HTML, gambar, atau Figma MCP. Playwright bawaan buat ukur & overlay.",
+  "version": "1.0.0",
+  "author": { "name": "Daffa Fathan" }
+}
